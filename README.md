@@ -2,13 +2,13 @@
 ## Detalles Generales
 **Autor**: Víctor A. Hernández Castro
 **Colaborador**: José R. Ortiz Ubarri
-	* El Dr. Ortiz nos proveyó un esqueleto del proyecto, al igual que una ilustración del funcionamiento del mismo, para nosotros entender mejor en qué consta el mismo y cómo tendríamos que implementarlo.
+	- El Dr. Ortiz nos proveyó un esqueleto del proyecto, al igual que una ilustración del funcionamiento del mismo, para nosotros entender mejor en qué consta el mismo y cómo tendríamos que implementarlo.
 **Referencias**: 
-	* [SQLite for Python 2.7](https://docs.python.org/2/library/sqlite3.html)
-	* [JSON for Python 2.7](https://docs.python.org/2/library/json.html)
-	* [UUID for Python 2.7](https://docs.python.org/2/library/uuid.html)
-	* [SocketServer for Python 2.7](https://docs.python.org/2/library/socketserver.html)
-	* [Sockets for Python 2.7](https://docs.python.org/2/library/socket.html)
+	- [SQLite for Python 2.7](https://docs.python.org/2/library/sqlite3.html)
+	- [JSON for Python 2.7](https://docs.python.org/2/library/json.html)
+	- [UUID for Python 2.7](https://docs.python.org/2/library/uuid.html)
+	- [SocketServer for Python 2.7](https://docs.python.org/2/library/socketserver.html)
+	- [Sockets for Python 2.7](https://docs.python.org/2/library/socket.html)
 
 **DISCLAIMER**: USE LOS FILES `mds_db.py` Y `Packet.py` PROVISTOS, YA QUE ESTOS ESTÁN “BUG-FREE” Y HACEN USO DE UNA FUNCIÓN “CUSTOM” ADICIONAL QUE SE HIZO (véase `getFileSize()`).
 
@@ -22,27 +22,27 @@ Estos scripts simulan el comportamiento de un Distributed File System (DFS) que 
 
 ### Meta Data Server (MDS)
 Para poder correr el MDS, simplemente se corre el siguiente comando desde el terminal:
-	* `python meta-data.py <mds port, default=8000>`
+	- `python meta-data.py <mds port, default=8000>`
 Al correr, el MDS espera satisfacer los mensajes de sus clientes:
-	* `data-node.py` usa `reg` para registrarse como data node en la base de datos
-	* `ls.py` usa `list` para recibir la lista de files en el DFS
-	* `copy.py` usa `put` para pedir insertar en el DFS, `get` para pedir un file del DFS y `dblks` para pedir notificar al MDS dónde se encuentran los data blocks acabados de guardar en los data nodes
+	- `data-node.py` usa `reg` para registrarse como data node en la base de datos
+	- `ls.py` usa `list` para recibir la lista de files en el DFS
+	- `copy.py` usa `put` para pedir insertar en el DFS, `get` para pedir un file del DFS y `dblks` para pedir notificar al MDS dónde se encuentran los data blocks acabados de guardar en los data nodes
 
 ### List Client
 Para poder correr `ls.py`, simplemente se corre el siguiente comando desde el terminal (después de tener el MDS corriendo):
-	* `python ls.py <mds ip>:<mds port, default=8000>`
+	- `python ls.py <mds ip>:<mds port, default=8000>`
 
 ### Data Nodes (DNs)
 Para poder correr los DNs, simplemente se corre el siguiente comando desde el terminal (después de tener el MDS corriendo):
-	* `python data-node.py <dn ip> <dn port> <data path> <mds port, default=8000>`
+	- `python data-node.py <dn ip> <dn port> <data path> <mds port, default=8000>`
 El `<data path>` es la dirección a un folder donde se puedan guardar los data blocks al recibirlos de `copy.py`. Esto mantiene las cosas recogidas.
 
 ### Copy Client
 Para poder correr `copy.py`, simplemente se corre uno de los siguientes comandos desde el terminal, dependiendo de si se copia al DFS o si se copia del DFS (después de tener el MDS y los DNs corriendo):
 	1. **Al DFS:**
-		* `python copy.py <source> <mds ip>:<mds port>:<mds path>`
+		- `python copy.py <source> <mds ip>:<mds port>:<mds path>`
 	2. **Del DFS:**
-		* `python copy.py <mds ip>:<mds port>:<mds path> <dest>`
+		- `python copy.py <mds ip>:<mds port>:<mds path> <dest>`
 
 
 
@@ -56,18 +56,18 @@ Para poder correr `copy.py`, simplemente se corre uno de los siguientes comandos
 
 ## Variables Globales (modificables)
 > copy.py  
-* `SUBCHUNK_BUFFER` – must be the same as in `data-node.py`
-* `DNODE_BUFFER` – must be big if using many DNs
-* `CHUNKLIST_BUFFER` – must be big if using many DNs; must be the same as in `meta-data.py`
+- `SUBCHUNK_BUFFER` – must be the same as in `data-node.py`
+- `DNODE_BUFFER` – must be big if using many DNs
+- `CHUNKLIST_BUFFER` – must be big if using many DNs; must be the same as in `meta-data.py`
 
 > data-node.py  
-* `DATA_PATH` – global on purpose (initial value doesn’t matter)
-* `SUBCHUNK_BUFFER` – must be the same as in `copy.py`
+- `DATA_PATH` – global on purpose (initial value doesn’t matter)
+- `SUBCHUNK_BUFFER` – must be the same as in `copy.py`
 
 > meta-data.py  
-* `CHUNKLIST_BUFFER` – must be big if using many DNs; must be the same as in `meta-data.py`
+- `CHUNKLIST_BUFFER` – must be big if using many DNs; must be the same as in `meta-data.py`
 
 > ls.py  
-* `LS_BUFFER` – must be big if inserting many files into DFS
+- `LS_BUFFER` – must be big if inserting many files into DFS
 
 
