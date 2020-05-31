@@ -1,0 +1,11 @@
+# Test files
+*.htm
+*.png
+*.pptx
+*.mp3
+
+# Metadata storage database
+dfs.db
+
+# Ignore binary dump files 
+dump/*
